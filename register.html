@@ -10,14 +10,11 @@
     <button onclick="register()">register</button>
 
     <script>
-      function register() {
-        Notification.requestPermission((status) => {
-          console.log(status);
-          navigator.serviceWorker.getRegistration().then(function (reg) {
-            console.log(reg);
-            reg.showNotification("Hello world!");
-          });
-        });
+      async function register() {
+        const status = await Notification.requestPermission();
+        if (status !== "granted") return console.log(`permission ${status}`);
+        const reg = await navigator.serviceWorker.getRegistration();
+        reg.showNotification("Hello world!");
       }
     </script>
   </body>

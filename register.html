@@ -14,6 +14,7 @@
         Notification.requestPermission((status) => {
           console.log(status);
           navigator.serviceWorker.getRegistration().then(function (reg) {
+            console.log(reg);
             reg.showNotification("Hello world!");
           });
         });

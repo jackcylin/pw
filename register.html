@@ -14,7 +14,16 @@
         const status = await Notification.requestPermission();
         if (status !== "granted") return console.log(`permission ${status}`);
         const reg = await navigator.serviceWorker.getRegistration();
-        reg.showNotification("Hello world!");
+        var options = {
+          body: "Here is a notification body!",
+          icon: "/logo-120.png",
+          vibrate: [100, 50, 100],
+          data: {
+            dateOfArrival: Date.now(),
+            primaryKey: 1,
+          },
+        };
+        reg.showNotification("Hello world!", options);
       }
     </script>
   </body>
